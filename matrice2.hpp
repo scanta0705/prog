@@ -20,22 +20,21 @@ double funz(double x){
     return y;
 }
 
-double avanzaesplicito(double *&x, double *&y,double h, double *&k, double **&a, double *&b, double *&c, int &dim){
+double restituisce(double *&y,double h, double *&k, double **&a, double *&b, double *&c, int &dim, int stop){
     k=new double[dim-1];
-    x=new double[dim-1];
     y=new double[dim-1];
-    /*double y=y0;
-    for(int f=0; f<dim-1; f++){
+    for(int n=0; n<stop-1; n++){
         for(int i=0; i<dim-1; i++){
-            k[i]=h*funz(x[f]+c[i]*h, y);
-            for(int j=0; j<i; j++){
-                y=y+a[i][j]*k[i];
+            for(int j=0; j<dim-1; j++){
+                k[i]=y[n]+h*a[i][j]*funz(k[j]);
             }
         }
-    }*/
-    
-    
-    return 1;
+        for(int i=0; i<dim-1; i++){
+            y[n+1]=y[n]+h*b[i]*funz(k[i]);
+        }
+    }
+    return y[stop-1];
 }
+
 
 #endif

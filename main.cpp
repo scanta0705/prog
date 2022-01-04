@@ -17,11 +17,10 @@ int main () {
     double *b;
 
     double *k;
-    double *x;
-    double x0;
-    x[0]=x0;
+    double h;
+    double x0=2; 
     double *y;
-    y[0]=funz(x[0]);
+    y[0]=funz(x0); //mi trovo il primo valore di xy
 
     bool errore;
     do{
@@ -35,8 +34,11 @@ int main () {
     if(tab) cout<<"Errore, la matrice nel file non e' un tableau";
 
     bool esplicito;
-    esplicito=esplicita(a, dim);
+    esplicito=esplicita(a, dim); //mi dice se è esplicita o implicita
 
+    int stop=5; //cambio in base alle iterazioni che voglio fare
+    double risultato=restituisce(y,h,k,a,b,c,dim,stop);
+    cout<< risultato;
     dealloc(matrice, dim);
     return 0;
 }
